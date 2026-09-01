@@ -1,0 +1,1 @@
+# No external dependencies yet — sqlite3 and argparse are built into Python
