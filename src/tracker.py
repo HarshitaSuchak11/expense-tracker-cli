@@ -11,7 +11,9 @@ import reports
 def main():
     parser = argparse.ArgumentParser(description="A simple CLI expense tracker")
     subparsers = parser.add_subparsers(dest = "command")
-
+    export_parser = subparsers.add_parser("export", help="Export expenses to a CSV file")
+    export_parser.add_argument("--filename", default="expenses_export.csv", help="Output CSV filename")
+    chart_parser = subparsers.add_parser("chart", help="Generate a bar chart of spending by category")
 #add command
     add_parser = subparsers.add_parser("add", help="Add a new expense")
     add_parser.add_argument("--date", required=True, help="Date in YYYY-MM-DD format")
@@ -57,6 +59,11 @@ def main():
         db.update_expense(args.id, args.date, args.category, args.amount, args.description)
     elif args.command == "summary" :
         reports.print_summary()
+    elif args.command == "export":
+        reports.export_to_csv(args.filename)
+    elif args.command == "chart" :
+        reports.generate_category_chart()
+        
     else:
         parser.print_help()
 

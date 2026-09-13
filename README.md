@@ -22,13 +22,13 @@ A command-line application to track personal expenses using SQLite. Supports add
 
 expense-tracker-cli/
 ├── src/
-│ ├── tracker.py # CLI entry point
-│ ├── db.py # Database operations and validation
-│ ├── models.py # Expense data model
-│ └── reports.py # Summary and analysis functions
+│ ├── tracker.py
+│ ├── db.py
+│ ├── models.py
+│ └── reports.py
 ├── tests/
-│ └── test_db.py # Automated tests for database functions
-├── data/ # SQLite database (excluded from version control)
+│ └── test_db.py functions
+├── data/
 ├── requirements.txt
 └── README.md
 
@@ -68,7 +68,15 @@ python src/tracker.py delete --id 1
 
 python src/tracker.py summary
 
-##Running Tests
+**Export to CSV:**
+
+python src/tracker.py export --filename my_expenses.csv
+
+**Generate spending chart:**
+
+pyhton src/tracker.py chart
+
+## Running Tests
 
 pytest
 
@@ -96,5 +104,3 @@ Spending by month:
 ## What I learned
 
 Building this project helped me understand database fundamentals (SQL, schema design), building a clean comand-line unterface with argpase, input validation and error handling, and writing automated tests with pytest and fixtures.
-
-

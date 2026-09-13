@@ -4,3 +4,5 @@ __pycache__/
 data/expenses.db
 .DS_Store
 
+category_chart.png
+expenses_export.csv

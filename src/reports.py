@@ -1,5 +1,7 @@
 import sys
 import os 
+import csv 
+import matplotlib.pyplot as plt
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -69,6 +71,44 @@ def print_summary() :
             print(f" {month}: Rs.{amount:.2f}")
 
 
+def export_to_csv(filename="expenses_export.csv") :
+    expenses = db.get_all_expenses()
 
+    if not expenses :
+        print("No expenses to export.")
+        return False
+    with open(filename, mode="w", newline="", encoding="utf-8") as file:
+
+        writer = csv.writer(file)
+        writer.writerow(["ID", "Date", "Category", "Amount", "Description"])
+        for row in expenses :
+            writer.writerow(row)
+
+    print(f"Expenses exported to {filename}")
+    return True 
+
+
+
+def generate_category_chart(filename="category_chart.png") :
+    categories = category_breakdown()
+
+    if not categories :
+        print(f"No data available to generate chart.")
+        return False 
+
+    labels = list(categories.keys())
+    values = list(categories.values())
+
+    plt.figure(figsize=(8, 5))
+    plt.bar(labels, values, color = "skyblue")
+    plt.xlabel("Categories")
+    plt.ylabel("Amount spent (Rs.)")
+    plt.title("Spending by Category")
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
+
+    print(f"Chart saved as {filename}")
+    return True 
 
 

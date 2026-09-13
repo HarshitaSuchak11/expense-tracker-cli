@@ -1,0 +1,16 @@
+[project]
+name = "expense-tracker-cli"
+version = "1.0.0"
+description = "A command-line expense tracker built with python and SQLite"
+requires-python = ">=3.9"
+
+[project.scripts]
+expense-tracker = "tracker:main"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["tracker", "db", "models", "reports"]
